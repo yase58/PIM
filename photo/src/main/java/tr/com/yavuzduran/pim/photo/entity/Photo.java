@@ -27,6 +27,8 @@ public class Photo {
     private String url;
     private String comment;
 
+    private String username;
+
     @ManyToOne
     private Album album;
 

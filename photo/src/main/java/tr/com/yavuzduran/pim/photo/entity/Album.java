@@ -27,6 +27,8 @@ public class Album {
 
     private String description;
 
+    private String username;
+
     @JsonIgnore
     private Date createDate;
 

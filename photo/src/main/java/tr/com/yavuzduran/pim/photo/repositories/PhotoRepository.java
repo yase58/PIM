@@ -7,8 +7,10 @@ import java.util.List;
 
 public interface PhotoRepository extends JpaRepository<Photo, Long> {
 
-    List<Photo> findByAlbum_Id(long album_id);
+    List<Photo> findByAlbum_IdAndUsername(long album_id, String username);
 
-    Photo findByUrl(String url);
+    Photo findByUrlAndUsername(String url, String username);
+
+    List<Photo> findByUsername(String username);
 
 }

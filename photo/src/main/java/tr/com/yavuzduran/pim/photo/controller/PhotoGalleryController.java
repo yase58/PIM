@@ -32,7 +32,6 @@ public class PhotoGalleryController {
 
     @PostMapping("/NewAlbum")
     public ResponseEntity<Response> addNewAlbums(@RequestBody Album album) {
-        album.setCreateDate(new Date());
         service.addNewAlbums(album);
         return ResponseBuilder.createSuccess();
     }

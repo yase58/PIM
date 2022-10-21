@@ -1,6 +1,7 @@
 package tr.com.yavuzduran.pim.photo.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import tr.com.yavuzduran.pim.exceptionhandler.exception.FileEmptyException;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,15 +31,16 @@ public class PhotoGalleryService implements IPhotoGalleryService {
     @Override
     public void upload(String album, MultipartFile file, HttpServletRequest request) throws IOException, FileEmptyException, FileExistException {
         if (!file.isEmpty()) {
-            Album album1 = albumRepository.findByName(album);
+            String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            Album album1 = albumRepository.findByNameAndUsername(album, username);
             String realPathToUploads = request.getServletContext().getRealPath(CommonConstant.fileUploadAddress);
             if (!new File(realPathToUploads).exists()) {
-                new File(realPathToUploads).mkdirs();
+                var b = new File(realPathToUploads).mkdirs();
             }
             String fileOrgName = file.getOriginalFilename();
             UUID filename = UUID.randomUUID();
             File dest = new File(realPathToUploads, filename.toString());
-            if(dest.exists()){
+            if (dest.exists()) {
                 throw new FileExistException("Filename : " + fileOrgName);
             }
             file.transferTo(dest);
@@ -48,6 +50,7 @@ public class PhotoGalleryService implements IPhotoGalleryService {
                     .id(filename)
                     .name(fileOrgName)
                     .title(file.getContentType())
+                    .username(username)
                     .build();
             photoRepository.save(photo);
         } else {
@@ -57,29 +60,33 @@ public class PhotoGalleryService implements IPhotoGalleryService {
 
     @Override
     public void addNewAlbums(Album album) {
+        album.setCreateDate(new Date());
+        album.setUsername((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         albumRepository.save(album);
     }
 
     @Override
     public List<Photo> getAllPhotos() {
-        return photoRepository.findAll();
+        return photoRepository.findByUsername((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     }
 
     @Override
     public List<Album> getAllAlbums() {
-        return albumRepository.findAll();
+        return albumRepository.findByUsername((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     }
 
     @Override
     public List<Photo> getAllPhotos(String album) {
-        Album album1 = albumRepository.findByName(album);
-        return photoRepository.findByAlbum_Id(album1.getId());
+        String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Album album1 = albumRepository.findByNameAndUsername(album, username);
+        return photoRepository.findByAlbum_IdAndUsername(album1.getId(), username);
     }
 
     @Override
     public void updatePhotoAlbums(String album, String photoUrl) {
-        Album album1 = albumRepository.findByName(album);
-        Photo photo = photoRepository.findByUrl(photoUrl);
+        String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Album album1 = albumRepository.findByNameAndUsername(album, username);
+        Photo photo = photoRepository.findByUrlAndUsername(photoUrl, username);
         photo.setAlbum(album1);
         photoRepository.save(photo);
     }
