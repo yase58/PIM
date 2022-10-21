@@ -5,10 +5,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tr.com.yavuzduran.pim.authorization.dto.ResponseDto;
 import tr.com.yavuzduran.pim.authorization.dto.UserDto;
 import tr.com.yavuzduran.pim.authorization.sevice.IUserService;
-import tr.com.yavuzduran.pim.authorization.util.ResponseBuilder;
+import tr.com.yavuzduran.pim.exceptionhandler.response.Response;
+import tr.com.yavuzduran.pim.exceptionhandler.response.ResponseBuilder;
 
 import java.util.List;
 
@@ -25,13 +25,13 @@ public class UserController {
     }
 
     @PostMapping("/createUser")
-    public ResponseEntity<ResponseDto> save(@RequestBody UserDto user) throws DataAccessException {
+    public ResponseEntity<Response> save(@RequestBody UserDto user) throws DataAccessException {
         userService.save(user);
         return ResponseBuilder.createSuccess();
     }
 
     @PatchMapping("/addRoleToUser")
-    public ResponseEntity<ResponseDto> addRoles(@RequestBody AddRoleRequest request) throws DataAccessException {
+    public ResponseEntity<Response> addRoles(@RequestBody AddRoleRequest request) throws DataAccessException {
         userService.addRoleTo(request.getUsername(), request.getRoleName());
         return ResponseBuilder.createSuccess();
     }

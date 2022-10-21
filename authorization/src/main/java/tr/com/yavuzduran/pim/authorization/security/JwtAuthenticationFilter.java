@@ -12,6 +12,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.preauth.PreAuthenticatedCredentialsNotFoundException;
 import tr.com.yavuzduran.pim.authorization.common.CommonConstant;
 
 import javax.servlet.FilterChain;
@@ -34,6 +35,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         String username = request.getParameter(CommonConstant.restUsername);
         String password = request.getParameter(CommonConstant.restPassword);
+        if (username == null || username.equals("")) {
+            throw new PreAuthenticatedCredentialsNotFoundException("Username not be empty!");
+        }
+        if (password == null || password.equals("") || passwordCheck(password)) {
+            throw new PreAuthenticatedCredentialsNotFoundException("Password format is wrong!");
+        }
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
         return authenticationManager.authenticate(token);
     }
@@ -44,7 +51,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         Algorithm algorithm = Algorithm.HMAC512(CommonConstant.secret);
         String accessToken = JWT.create()
                 .withSubject(user.getUsername())
-                .withExpiresAt(Date.from(Instant.now().plus(CommonConstant.jwtExpireDate, ChronoUnit.MINUTES)))
+                .withExpiresAt(Date.from(Instant.now().plus(CommonConstant.jwtExpireTimeInMinutes, ChronoUnit.MINUTES)))
                 .withIssuer(request.getRequestURL().toString())
                 .withClaim(CommonConstant.jwtRole, user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);
@@ -58,6 +65,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), Map.of(CommonConstant.jwtAccess, accessToken, CommonConstant.jwtRefresh, refreshToken));
         super.successfulAuthentication(request, response, chain, authResult);
+    }
+
+    private boolean passwordCheck(String password) {
+        return false;
     }
 
 }

@@ -10,7 +10,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 import tr.com.yavuzduran.pim.authorization.common.CommonConstant;
-import tr.com.yavuzduran.pim.authorization.exception.JWTException;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -30,21 +29,17 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         } else {
             String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
             if (authHeader != null && authHeader.startsWith(CommonConstant.jwtPrefix)) {
-                try {
-                    String token = authHeader.split(CommonConstant.jwtPrefix)[1];
-                    Algorithm algorithm = Algorithm.HMAC512(CommonConstant.secret);
-                    JWTVerifier jwtVerifier = JWT.require(algorithm).build();
-                    DecodedJWT decodedJWT = jwtVerifier.verify(token);
-                    String username = decodedJWT.getSubject();
-                    List<SimpleGrantedAuthority> authorities =
-                            Stream.of(decodedJWT.getClaim(CommonConstant.jwtRole).asArray(String.class)).map(SimpleGrantedAuthority::new)
-                                    .collect(Collectors.toList());
-                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, null, authorities);
-                    SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-                    filterChain.doFilter(request, response);
-                } catch (Exception e) {
-                    throw new JWTException(e);
-                }
+                String token = authHeader.split(CommonConstant.jwtPrefix)[1];
+                Algorithm algorithm = Algorithm.HMAC512(CommonConstant.secret);
+                JWTVerifier jwtVerifier = JWT.require(algorithm).build();
+                DecodedJWT decodedJWT = jwtVerifier.verify(token);
+                String username = decodedJWT.getSubject();
+                List<SimpleGrantedAuthority> authorities =
+                        Stream.of(decodedJWT.getClaim(CommonConstant.jwtRole).asArray(String.class)).map(SimpleGrantedAuthority::new)
+                                .collect(Collectors.toList());
+                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, null, authorities);
+                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                filterChain.doFilter(request, response);
             } else {
                 filterChain.doFilter(request, response);
             }
