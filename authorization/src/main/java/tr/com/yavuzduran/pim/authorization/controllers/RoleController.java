@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import tr.com.yavuzduran.pim.authorization.dto.ResponseDto;
 import tr.com.yavuzduran.pim.authorization.dto.RoleDto;
 import tr.com.yavuzduran.pim.authorization.sevice.IUserService;
-import tr.com.yavuzduran.pim.authorization.util.ResponseBuilder;
+import tr.com.yavuzduran.pim.exceptionhandler.response.Response;
+import tr.com.yavuzduran.pim.exceptionhandler.response.ResponseBuilder;
 
 @RestController
 @RequestMapping("/role")
@@ -20,7 +20,7 @@ public class RoleController {
     private final IUserService userService;
 
     @PostMapping("/createRole")
-    public ResponseEntity<ResponseDto> save(@RequestBody RoleDto roleDto) throws DataAccessException {
+    public ResponseEntity<Response> save(@RequestBody RoleDto roleDto) throws DataAccessException {
         userService.save(roleDto);
         return ResponseBuilder.createSuccess();
     }

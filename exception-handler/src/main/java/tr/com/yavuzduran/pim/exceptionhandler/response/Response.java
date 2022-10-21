@@ -1,16 +1,15 @@
-package tr.com.yavuzduran.pim.authorization.dto;
+package tr.com.yavuzduran.pim.exceptionhandler.response;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class ResponseDto {
-
+public class Response {
     private String statusText;
     private int status;
 
     @Builder
-    public ResponseDto(String statusText, int status) {
+    public Response(String statusText, int status) {
         this.statusText = statusText;
         this.status = status;
     }

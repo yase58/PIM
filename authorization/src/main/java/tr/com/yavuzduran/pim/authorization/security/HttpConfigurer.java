@@ -13,7 +13,7 @@ public class HttpConfigurer extends AbstractHttpConfigurer<HttpConfigurer, HttpS
         security.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         security.cors().and().csrf().disable();
         security.authorizeRequests((auth) -> {
-            auth.requestMatchers(e->e.getRequestURL().toString().equals(CommonConstant.loginAddress)).permitAll();
+            auth.requestMatchers(e -> e.getRequestURL().toString().equals(CommonConstant.loginAddress)).permitAll();
             auth.anyRequest().authenticated();
         });
         security.formLogin()
