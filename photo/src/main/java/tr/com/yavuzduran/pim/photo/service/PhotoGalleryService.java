@@ -7,10 +7,13 @@ import org.springframework.web.multipart.MultipartFile;
 import tr.com.yavuzduran.pim.exceptionhandler.exception.FileEmptyException;
 import tr.com.yavuzduran.pim.exceptionhandler.exception.FileExistException;
 import tr.com.yavuzduran.pim.photo.common.CommonConstant;
+import tr.com.yavuzduran.pim.photo.dto.AlbumDto;
+import tr.com.yavuzduran.pim.photo.dto.PhotoDto;
 import tr.com.yavuzduran.pim.photo.entity.Album;
 import tr.com.yavuzduran.pim.photo.entity.Photo;
 import tr.com.yavuzduran.pim.photo.repositories.AlbumRepository;
 import tr.com.yavuzduran.pim.photo.repositories.PhotoRepository;
+import tr.com.yavuzduran.pim.photo.util.PhotoModelConverter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
@@ -33,9 +36,9 @@ public class PhotoGalleryService implements IPhotoGalleryService {
         if (!file.isEmpty()) {
             String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             Album album1 = albumRepository.findByNameAndUsername(album, username);
-            String realPathToUploads = request.getServletContext().getRealPath(CommonConstant.fileUploadAddress);
+            String realPathToUploads = request.getServletContext().getRealPath(CommonConstant.FILE_UPLOAD_ADDRESS);
             if (!new File(realPathToUploads).exists()) {
-                var b = new File(realPathToUploads).mkdirs();
+                new File(realPathToUploads).mkdirs();
             }
             String fileOrgName = file.getOriginalFilename();
             UUID filename = UUID.randomUUID();
@@ -59,27 +62,27 @@ public class PhotoGalleryService implements IPhotoGalleryService {
     }
 
     @Override
-    public void addNewAlbums(Album album) {
+    public void addNewAlbums(AlbumDto album) {
         album.setCreateDate(new Date());
         album.setUsername((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        albumRepository.save(album);
+        albumRepository.save(PhotoModelConverter.convert(album));
     }
 
     @Override
-    public List<Photo> getAllPhotos() {
-        return photoRepository.findByUsername((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+    public List<PhotoDto> getAllPhotos() {
+        return PhotoModelConverter.convert(photoRepository.findByUsername((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
     }
 
     @Override
-    public List<Album> getAllAlbums() {
-        return albumRepository.findByUsername((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+    public List<AlbumDto> getAllAlbums() {
+        return PhotoModelConverter.convertAlbum(albumRepository.findByUsername((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
     }
 
     @Override
-    public List<Photo> getAllPhotos(String album) {
+    public List<PhotoDto> getAllPhotos(String album) {
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Album album1 = albumRepository.findByNameAndUsername(album, username);
-        return photoRepository.findByAlbum_IdAndUsername(album1.getId(), username);
+        return PhotoModelConverter.convert(photoRepository.findByAlbum_IdAndUsername(album1.getId(), username));
     }
 
     @Override

@@ -40,7 +40,7 @@ public class ContactModelConverter {
     }
 
     public static List<ContactDto> convert(List<Contact> contactList) throws ContactNullException {
-        if(contactList == null || contactList.size() == 0){
+        if(contactList == null || contactList.isEmpty()){
             throw new ContactNullException("Contact Not Found!");
         }
         List<ContactDto> contactDtoList = new ArrayList<>();
@@ -50,5 +50,8 @@ public class ContactModelConverter {
         return contactDtoList;
     }
 
+    private ContactModelConverter(){
+
+    }
 
 }

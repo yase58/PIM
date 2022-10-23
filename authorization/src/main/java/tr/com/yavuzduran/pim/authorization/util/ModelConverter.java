@@ -2,8 +2,8 @@ package tr.com.yavuzduran.pim.authorization.util;
 
 import tr.com.yavuzduran.pim.authorization.dto.RoleDto;
 import tr.com.yavuzduran.pim.authorization.dto.UserDto;
-import tr.com.yavuzduran.pim.authorization.model.Role;
-import tr.com.yavuzduran.pim.authorization.model.User;
+import tr.com.yavuzduran.pim.security.model.Role;
+import tr.com.yavuzduran.pim.security.model.User;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Set;
 
 public class ModelConverter {
+
+    private ModelConverter() {
+    }
 
     public static User convert(UserDto userDto) {
         return User.builder().
@@ -47,7 +50,7 @@ public class ModelConverter {
 
 
     public static List<UserDto> convertAllUser(List<User> userList) {
-        if (userList == null || userList.size() == 0) {
+        if (userList == null || userList.isEmpty()) {
             return new ArrayList<>();
         }
         List<UserDto> userDtoList = new ArrayList<>();
@@ -58,7 +61,7 @@ public class ModelConverter {
     }
 
     public static Set<RoleDto> convertAllRole(Set<Role> roleList) {
-        if (roleList == null || roleList.size() == 0) {
+        if (roleList == null || roleList.isEmpty()) {
             return new HashSet<>();
         }
         Set<RoleDto> roleDtoList = new HashSet<>();
@@ -70,7 +73,7 @@ public class ModelConverter {
 
 
     public static Set<Role> convertAllRoleEntity(Set<RoleDto> roleDtoSet) {
-        if (roleDtoSet == null || roleDtoSet.size() == 0) {
+        if (roleDtoSet == null || roleDtoSet.isEmpty()) {
             return new HashSet<>();
         }
         Set<Role> roleDtoList = new HashSet<>();

@@ -6,7 +6,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.com.yavuzduran.pim.authorization.dto.UserDto;
-import tr.com.yavuzduran.pim.authorization.sevice.IUserService;
+import tr.com.yavuzduran.pim.authorization.service.IUserService;
 import tr.com.yavuzduran.pim.exceptionhandler.response.Response;
 import tr.com.yavuzduran.pim.exceptionhandler.response.ResponseBuilder;
 

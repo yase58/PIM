@@ -1,4 +1,4 @@
-package tr.com.yavuzduran.pim;
+package tr.com.yavuzduran.pim.photo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

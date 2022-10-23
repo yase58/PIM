@@ -13,6 +13,7 @@ import java.util.UUID;
 @Builder
 @Getter
 @Setter
+@Table
 public class Contact {
 
     @Id

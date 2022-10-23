@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tr.com.yavuzduran.pim.authorization.dto.RoleDto;
-import tr.com.yavuzduran.pim.authorization.sevice.IUserService;
+import tr.com.yavuzduran.pim.authorization.service.IUserService;
 import tr.com.yavuzduran.pim.exceptionhandler.response.Response;
 import tr.com.yavuzduran.pim.exceptionhandler.response.ResponseBuilder;
 

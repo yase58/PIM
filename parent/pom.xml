@@ -6,7 +6,7 @@
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-        <version>3.0.0-RC1</version>
+        <version>2.7.5</version>
         <relativePath/>
     </parent>
 
@@ -16,6 +16,7 @@
         <module>../contact</module>
         <module>../photo</module>
         <module>../Software Blog</module>
+        <module>../Security</module>
     </modules>
 
     <groupId>tr.com.yavuzduran.pim</groupId>
@@ -27,6 +28,7 @@
 
     <properties>
         <exception-handler.version>0.0.1</exception-handler.version>
+        <security.version>0.0.1</security.version>
         <authorization.version>0.0.1</authorization.version>
         <photo.version>0.0.1</photo.version>
         <contact.version>0.0.1</contact.version>
@@ -39,6 +41,11 @@
                 <groupId>tr.com.yavuzduran.pim</groupId>
                 <artifactId>exception-handler</artifactId>
                 <version>${exception-handler.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tr.com.yavuzduran.pim</groupId>
+                <artifactId>security</artifactId>
+                <version>${security.version}</version>
             </dependency>
             <dependency>
                 <groupId>tr.com.yavuzduran.pim</groupId>
@@ -74,12 +81,11 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>1.18.24</version>
-                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>com.auth0</groupId>
                 <artifactId>java-jwt</artifactId>
-                <version>4.1.0</version>
+                <version>4.2.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -110,27 +116,5 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 
 </project>

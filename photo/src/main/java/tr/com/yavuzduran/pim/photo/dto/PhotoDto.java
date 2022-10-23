@@ -1,25 +1,20 @@
-package tr.com.yavuzduran.pim.photo.entity;
+package tr.com.yavuzduran.pim.photo.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import tr.com.yavuzduran.pim.photo.entity.Album;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import java.util.Date;
-import java.util.UUID;
 
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Builder
-public class Photo {
+@Data
+public class PhotoDto {
 
-    @Id
-    @JsonIgnore
-    private UUID id = UUID.randomUUID();
     private String name;
     private String title;
     @JsonIgnore
@@ -29,7 +24,6 @@ public class Photo {
 
     private String username;
 
-    @ManyToOne
     private Album album;
 
 }

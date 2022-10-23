@@ -10,20 +10,4 @@ public class ContactApplication {
 		SpringApplication.run(ContactApplication.class, args);
 	}
 
-
-//	@Bean
-//	CommandLineRunner commandLineRunner(ContactRepository contactRepository){
-//		return args -> {
-//			Contact contact = Contact.builder()
-//					.company("company")
-//					.name("name")
-//					.nickname("nickname")
-//					.surname("surname")
-//					.tagPhoneMap(Map.of(EnTag.HOME, "555555",EnTag.MOBILE, "5439288958"))
-//					.uuid(UUID.randomUUID())
-//					.build();
-//
-//			contactRepository.save(contact);
-//		};
-//	}
 }

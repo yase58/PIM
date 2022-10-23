@@ -17,4 +17,6 @@ public class ResponseBuilder {
         return ResponseEntity.ok(Response.builder().status(status.value()).statusText(statusText).build());
     }
 
+    private ResponseBuilder() {
+    }
 }

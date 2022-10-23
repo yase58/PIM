@@ -24,3 +24,5 @@ hs_err_pid*
 
 # Intelij Idea Directory #
 /.idea
+*/target/**
+

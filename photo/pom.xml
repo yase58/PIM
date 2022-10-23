@@ -52,11 +52,15 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+
         <dependency>
             <groupId>tr.com.yavuzduran.pim</groupId>
-            <artifactId>authorization</artifactId>
-            <scope>compile</scope>
+            <artifactId>security</artifactId>
         </dependency>
+		<dependency>
+			<groupId>tr.com.yavuzduran.pim</groupId>
+			<artifactId>exception-handler</artifactId>
+		</dependency>
     </dependencies>
 
 	<build>

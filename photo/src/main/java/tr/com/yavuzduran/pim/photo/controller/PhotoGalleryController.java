@@ -9,13 +9,12 @@ import tr.com.yavuzduran.pim.exceptionhandler.exception.FileEmptyException;
 import tr.com.yavuzduran.pim.exceptionhandler.exception.FileExistException;
 import tr.com.yavuzduran.pim.exceptionhandler.response.Response;
 import tr.com.yavuzduran.pim.exceptionhandler.response.ResponseBuilder;
-import tr.com.yavuzduran.pim.photo.entity.Album;
-import tr.com.yavuzduran.pim.photo.entity.Photo;
+import tr.com.yavuzduran.pim.photo.dto.AlbumDto;
+import tr.com.yavuzduran.pim.photo.dto.PhotoDto;
 import tr.com.yavuzduran.pim.photo.service.IPhotoGalleryService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -31,28 +30,28 @@ public class PhotoGalleryController {
     }
 
     @PostMapping("/NewAlbum")
-    public ResponseEntity<Response> addNewAlbums(@RequestBody Album album) {
+    public ResponseEntity<Response> addNewAlbums(@RequestBody AlbumDto album) {
         service.addNewAlbums(album);
         return ResponseBuilder.createSuccess();
     }
 
     @GetMapping("/albums")
-    public ResponseEntity<List<Album>> getAllAlbums() {
+    public ResponseEntity<List<AlbumDto>> getAllAlbums() {
         return ResponseEntity.ok(service.getAllAlbums());
     }
 
     @GetMapping("/photos")
-    public ResponseEntity<List<Photo>> getAllPhotos() {
+    public ResponseEntity<List<PhotoDto>> getAllPhotos() {
         return ResponseEntity.ok(service.getAllPhotos());
     }
 
     @GetMapping("/{album}")
-    public ResponseEntity<List<Photo>> getAllPhotos(@PathVariable(value = "album") String album) {
+    public ResponseEntity<List<PhotoDto>> getAllPhotos(@PathVariable(value = "album") String album) {
         return ResponseEntity.ok(service.getAllPhotos(album));
     }
 
     @PatchMapping("/{album}")
-    public ResponseEntity<Response> updatePhotoAlbums(@PathVariable(value = "album") String album, @RequestBody String photoUrl){
+    public ResponseEntity<Response> updatePhotoAlbums(@PathVariable(value = "album") String album, @RequestBody String photoUrl) {
         service.updatePhotoAlbums(album, photoUrl);
         return ResponseBuilder.createSuccess();
     }
