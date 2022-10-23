@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <version>3.0.0-RC1</version>
+        <relativePath/>
+    </parent>
+
+    <modules>
+        <module>../exception-handler</module>
+        <module>../authorization</module>
+        <module>../contact</module>
+        <module>../photo</module>
+        <module>../Software Blog</module>
+    </modules>
+
+    <groupId>tr.com.yavuzduran.pim</groupId>
+    <artifactId>parent</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+    <name>Parent</name>
+    <description>Parent</description>
+
+    <properties>
+        <exception-handler.version>0.0.1</exception-handler.version>
+        <authorization.version>0.0.1</authorization.version>
+        <photo.version>0.0.1</photo.version>
+        <contact.version>0.0.1</contact.version>
+        <blog-software.version>0.0.1</blog-software.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>tr.com.yavuzduran.pim</groupId>
+                <artifactId>exception-handler</artifactId>
+                <version>${exception-handler.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tr.com.yavuzduran.pim</groupId>
+                <artifactId>authorization</artifactId>
+                <version>${authorization.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tr.com.yavuzduran.pim</groupId>
+                <artifactId>photo</artifactId>
+                <version>${photo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tr.com.yavuzduran.pim</groupId>
+                <artifactId>contact</artifactId>
+                <version>${contact.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tr.com.yavuzduran.pim</groupId>
+                <artifactId>blog-software</artifactId>
+                <version>${blog-software.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.5.0</version>
+            </dependency>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>8.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.24</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>4.1.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <excludes>
+                            <exclude>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                            </exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.3.2</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>
