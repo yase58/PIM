@@ -11,12 +11,13 @@
     </parent>
 
     <modules>
+        <module>../security</module>
         <module>../exception-handler</module>
         <module>../authorization</module>
         <module>../contact</module>
         <module>../photo</module>
         <module>../blog-software</module>
-        <module>../security</module>
+        <module>../blog-personal</module>
     </modules>
 
     <groupId>tr.com.yavuzduran.pim</groupId>
@@ -37,6 +38,7 @@
         <photo.version>0.0.1</photo.version>
         <contact.version>0.0.1</contact.version>
         <blog-software.version>0.0.1</blog-software.version>
+        <blog-personal.version>0.0.1</blog-personal.version>
 
         <snakeyaml.version>1.33</snakeyaml.version>
     </properties>
@@ -72,6 +74,11 @@
                 <groupId>tr.com.yavuzduran.pim</groupId>
                 <artifactId>blog-software</artifactId>
                 <version>${blog-software.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tr.com.yavuzduran.pim</groupId>
+                <artifactId>blog-personal</artifactId>
+                <version>${blog-personal.version}</version>
             </dependency>
 
             <!--  Spring Dependency -->
