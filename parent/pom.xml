@@ -19,6 +19,7 @@
         <module>../blog-software</module>
         <module>../blog-personal</module>
         <module>../event-scheduler</module>
+        <module>../todo-app</module>
     </modules>
 
     <groupId>tr.com.yavuzduran.pim</groupId>
@@ -41,6 +42,7 @@
         <blog-software.version>0.0.1</blog-software.version>
         <blog-personal.version>0.0.1</blog-personal.version>
         <event-scheduler.version>0.0.1</event-scheduler.version>
+        <todo-app.version>0.0.1</todo-app.version>
 
         <snakeyaml.version>1.33</snakeyaml.version>
     </properties>
@@ -86,6 +88,11 @@
                 <groupId>tr.com.yavuzduran.pim</groupId>
                 <artifactId>event-scheduler</artifactId>
                 <version>${event-scheduler.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tr.com.yavuzduran.pim</groupId>
+                <artifactId>todo-app</artifactId>
+                <version>${todo-app.version}</version>
             </dependency>
 
             <!--  Spring Dependency -->
