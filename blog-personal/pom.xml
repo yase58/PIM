@@ -8,11 +8,11 @@
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>blog-software</artifactId>
-    <version>${blog-software.version}</version>
+    <artifactId>blog-personal</artifactId>
+    <version>${blog-personal.version}</version>
     <packaging>war</packaging>
-    <name>Software Blog</name>
-    <description>Software Blog</description>
+    <name>Personal Blog</name>
+    <description>Personal Blog</description>
 
     <dependencies>
         <dependency>
