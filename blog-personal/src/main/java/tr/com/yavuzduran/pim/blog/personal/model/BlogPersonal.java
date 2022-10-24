@@ -2,10 +2,7 @@ package tr.com.yavuzduran.pim.blog.personal.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -18,6 +15,7 @@ import java.util.Date;
 public class BlogPersonal {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String username;

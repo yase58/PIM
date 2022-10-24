@@ -15,6 +15,7 @@ import java.util.Date;
 public class BlogSoftware {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String username;
