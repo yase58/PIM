@@ -15,8 +15,8 @@
         <module>../authorization</module>
         <module>../contact</module>
         <module>../photo</module>
-        <module>../Software Blog</module>
-        <module>../Security</module>
+        <module>../blog-software</module>
+        <module>../security</module>
     </modules>
 
     <groupId>tr.com.yavuzduran.pim</groupId>
@@ -27,12 +27,18 @@
     <description>Parent</description>
 
     <properties>
+        <java.version>19</java.version>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
+
         <exception-handler.version>0.0.1</exception-handler.version>
         <security.version>0.0.1</security.version>
         <authorization.version>0.0.1</authorization.version>
         <photo.version>0.0.1</photo.version>
         <contact.version>0.0.1</contact.version>
         <blog-software.version>0.0.1</blog-software.version>
+
+        <snakeyaml.version>1.33</snakeyaml.version>
     </properties>
 
     <dependencyManagement>
@@ -67,6 +73,17 @@
                 <artifactId>blog-software</artifactId>
                 <version>${blog-software.version}</version>
             </dependency>
+
+            <!--  Spring Dependency -->
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.7.5</version>
+            </dependency>
+
+            <!--  Spring Dependency -->
+
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>

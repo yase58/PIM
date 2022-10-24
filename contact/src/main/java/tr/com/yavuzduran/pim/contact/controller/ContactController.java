@@ -35,13 +35,13 @@ public class ContactController {
         return ResponseBuilder.createSuccess();
     }
 
-    @GetMapping("/allContact")
+    @GetMapping
     public ResponseEntity<List<ContactDto>> getContacts() throws ContactNullException {
         return ResponseEntity.ok(contactService.getContacts());
     }
 
-    @GetMapping
-    public ResponseEntity<ContactDto> getContacts(@RequestParam String name, @RequestParam String surname) throws ContactNullException {
+    @GetMapping("/{name}{surname}")
+    public ResponseEntity<ContactDto> getContacts(@PathVariable String name, @PathVariable String surname) throws ContactNullException {
         return ResponseEntity.ok(contactService.getContact(name, surname));
     }
 
