@@ -2,10 +2,12 @@ package tr.com.yavuzduran.pim.blog.personal.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import tr.com.yavuzduran.pim.blog.personal.dto.BlogPersonalDto;
-import tr.com.yavuzduran.pim.blog.personal.dto.BlogPersonalSimpleDto;
-import tr.com.yavuzduran.pim.blog.personal.service.IBlogPersonalService;
+import tr.com.yavuzduran.pim.blog.personal.service.BlogPersonalServiceImp;
+import tr.com.yavuzduran.pim.common.controller.ICrudController;
+import tr.com.yavuzduran.pim.exceptionhandler.exception.PIMException;
 import tr.com.yavuzduran.pim.exceptionhandler.response.Response;
 import tr.com.yavuzduran.pim.exceptionhandler.response.ResponseBuilder;
 
@@ -13,36 +15,36 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class BlogPersonalController {
+public class BlogPersonalController extends ICrudController<BlogPersonalDto, String> {
 
-    private final IBlogPersonalService service;
+    private final BlogPersonalServiceImp service;
 
-    @PostMapping
-    public ResponseEntity<Response> createBlogPersonal(BlogPersonalDto blogPersonalDto) {
-        service.createBlogPersonal(blogPersonalDto);
+    @Override
+    public ResponseEntity<Response> save(BlogPersonalDto blogPersonalDto) throws PIMException {
+        service.save(blogPersonalDto);
         return ResponseBuilder.createSuccess();
     }
 
-    @PatchMapping
-    public ResponseEntity<Response> updateBlogPersonal(String title, BlogPersonalDto blogPersonalDto) {
-        service.updateBlogPersonal(title, blogPersonalDto);
+    @Override
+    public ResponseEntity<Response> update(String title, BlogPersonalDto blogPersonalDto) throws PIMException {
+        service.update(title, blogPersonalDto);
         return ResponseBuilder.createSuccess();
     }
 
-    @DeleteMapping
-    public ResponseEntity<Response> removeBlogPersonal(String title) {
-        service.removeBlogPersonal(title);
+    @Override
+    public ResponseEntity<Response> remove(String title) throws PIMException {
+        service.remove(title);
         return ResponseBuilder.createSuccess();
     }
 
-    @GetMapping
-    public ResponseEntity<List<BlogPersonalSimpleDto>> getAllBlogPersonal() {
-        return ResponseEntity.ok(service.getAllBlogPersonal());
+    @Override
+    public ResponseEntity<List<BlogPersonalDto>> getAllData() {
+        return ResponseEntity.ok(service.getAllData());
     }
 
-    @GetMapping("/{title}")
-    public ResponseEntity<BlogPersonalDto> getBlogPersonal(@PathVariable String title) {
-        return ResponseEntity.ok(service.getBlogPersonal(title));
+    @Override
+    public ResponseEntity<BlogPersonalDto> getData(@PathVariable String title) throws PIMException {
+        return ResponseEntity.ok(service.getData(title));
     }
 
 }

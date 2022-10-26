@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -20,5 +21,5 @@ public class UserDto {
     @JsonIgnore
     private String password;
 
-    private Set<RoleDto> roles;
+    private List<RoleDto> roles;
 }

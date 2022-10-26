@@ -9,6 +9,10 @@ public class ResponseBuilder {
         return ResponseEntity.ok(Response.builder().status(HttpStatus.OK.value()).statusText("OK").build());
     }
 
+    public static ResponseEntity<Response> createSuccess(HttpStatus status){
+        return ResponseEntity.status(status).body(Response.builder().status(status.value()).statusText(status.name()).build());
+    }
+
     public static ResponseEntity<Response> createError(String statusText){
         return ResponseEntity.ok(Response.builder().status(HttpStatus.INTERNAL_SERVER_ERROR.value()).statusText(statusText).build());
     }

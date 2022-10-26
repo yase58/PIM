@@ -3,16 +3,8 @@ package tr.com.yavuzduran.pim.eventscheduler;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import tr.com.yavuzduran.pim.eventscheduler.dto.EventDto;
-import tr.com.yavuzduran.pim.eventscheduler.enumaration.EnReminder;
-import tr.com.yavuzduran.pim.eventscheduler.enumaration.EnRepeatPeriod;
 import tr.com.yavuzduran.pim.eventscheduler.service.EventSchedulerServiceImp;
-import tr.com.yavuzduran.pim.eventscheduler.util.TimeFormatter;
-import tr.com.yavuzduran.pim.exceptionhandler.exception.EventParseException;
-
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
+import tr.com.yavuzduran.pim.exceptionhandler.exception.eventscheduler.EventParseException;
 
 @SpringBootTest
 class EventSchedulerApplicationTests {

@@ -1,14 +1,22 @@
 package tr.com.yavuzduran.pim.blog.personal.dto;
 
 import lombok.Builder;
-import lombok.Data;
 
-@Data
-@Builder
-public class BlogPersonalDto {
-
+public class BlogPersonalDto extends BlogPersonalSimpleDto {
     private String text;
-    private String title;
-    private String summary;
+
+    @Builder
+    public BlogPersonalDto(String title, String summary, String text) {
+        super(title, summary);
+        this.text = text;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
 }

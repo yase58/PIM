@@ -62,7 +62,11 @@
 			<groupId>tr.com.yavuzduran.pim</groupId>
 			<artifactId>exception-handler</artifactId>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>tr.com.yavuzduran.pim</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
