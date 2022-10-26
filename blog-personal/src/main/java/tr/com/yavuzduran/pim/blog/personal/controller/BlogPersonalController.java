@@ -1,6 +1,7 @@
 package tr.com.yavuzduran.pim.blog.personal.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,7 @@ public class BlogPersonalController extends ICrudController<BlogPersonalDto, Str
     @Override
     public ResponseEntity<Response> save(BlogPersonalDto blogPersonalDto) throws PIMException {
         service.save(blogPersonalDto);
-        return ResponseBuilder.createSuccess();
+        return ResponseBuilder.createSuccess(HttpStatus.NO_CONTENT);
     }
 
     @Override
@@ -43,7 +44,7 @@ public class BlogPersonalController extends ICrudController<BlogPersonalDto, Str
     }
 
     @Override
-    public ResponseEntity<BlogPersonalDto> getData(@PathVariable String title) throws PIMException {
+    public ResponseEntity<BlogPersonalDto> getData(String title) throws PIMException {
         return ResponseEntity.ok(service.getData(title));
     }
 

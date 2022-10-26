@@ -1,6 +1,7 @@
 package tr.com.yavuzduran.pim.blog.software.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import tr.com.yavuzduran.pim.blog.software.dto.BlogSoftwareDto;
@@ -24,7 +25,7 @@ public class BlogSoftwareController extends ICrudController<BlogSoftwareDto, Str
     @Override
     public ResponseEntity<Response> save(BlogSoftwareDto blogSoftwareDto) throws BlogSoftwareAlreadyExistException, BlogSoftwareIdentifierMissingException {
         service.save(blogSoftwareDto);
-        return ResponseBuilder.createSuccess();
+        return ResponseBuilder.createSuccess(HttpStatus.NO_CONTENT);
     }
 
     @Override

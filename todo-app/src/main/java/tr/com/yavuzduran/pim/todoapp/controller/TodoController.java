@@ -22,7 +22,7 @@ public class TodoController extends ICrudController<TodoDto, String> {
     @Override
     public ResponseEntity<Response> save(TodoDto todoDto) throws TodoParseException, TodoAlreadyExistException, TodoIdentifierMissingException {
         service.save(todoDto);
-        return ResponseBuilder.createSuccess(HttpStatus.CREATED);
+        return ResponseBuilder.createSuccess(HttpStatus.NO_CONTENT);
     }
 
     @Override

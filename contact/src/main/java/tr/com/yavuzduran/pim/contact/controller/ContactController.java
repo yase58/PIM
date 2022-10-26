@@ -1,6 +1,7 @@
 package tr.com.yavuzduran.pim.contact.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.com.yavuzduran.pim.common.controller.ICrudController;
@@ -25,7 +26,7 @@ public class ContactController extends ICrudController<ContactDto, FullNameDto> 
     @Override
     public ResponseEntity<Response> save(ContactDto contactDto) throws ContactIdentifierNullException, ContactAlreadyExistException {
         contactService.save(contactDto);
-        return ResponseBuilder.createSuccess();
+        return ResponseBuilder.createSuccess(HttpStatus.NO_CONTENT);
     }
 
     @Override

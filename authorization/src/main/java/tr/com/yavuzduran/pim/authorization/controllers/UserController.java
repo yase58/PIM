@@ -31,7 +31,7 @@ public class UserController extends ICrudController<UserDto, String> {
     @Override
     public ResponseEntity<Response> save(UserDto user) throws DataAccessException, UserAlreadyExistException, UserIdentifiersMissingException {
         userService.save(user);
-        return ResponseBuilder.createSuccess(HttpStatus.CREATED);
+        return ResponseBuilder.createSuccess(HttpStatus.NO_CONTENT);
     }
     @Override
     public ResponseEntity<Response> update(String username, UserDto userDto) throws UserNotFoundException, UserNullException, UserAlreadyExistException, UserIdentifiersMissingException {

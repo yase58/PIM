@@ -1,6 +1,7 @@
 package tr.com.yavuzduran.pim.eventscheduler.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public class EventSchedulerController extends ICrudController<EventDto, TitleAnd
     @Override
     public ResponseEntity<Response> save(EventDto eventDto) throws EventParseException, EventIdentifierMissingException, EventAlreadyExistException {
         service.save(eventDto);
-        return ResponseBuilder.createSuccess();
+        return ResponseBuilder.createSuccess(HttpStatus.NO_CONTENT);
     }
 
     @Override

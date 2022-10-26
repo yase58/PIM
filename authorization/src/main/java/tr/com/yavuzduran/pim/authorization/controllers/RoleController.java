@@ -22,7 +22,7 @@ public class RoleController extends ICrudController<String, String> {
 
     public ResponseEntity<Response> save(String roleDto) throws DataAccessException, PIMException {
         roleService.save(roleDto);
-        return ResponseBuilder.createSuccess(HttpStatus.CREATED);
+        return ResponseBuilder.createSuccess(HttpStatus.NO_CONTENT);
     }
 
     public ResponseEntity<Response> update(String newRoleName, String oldRoleName) throws PIMException {
