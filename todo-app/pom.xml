@@ -48,6 +48,10 @@
             <groupId>tr.com.yavuzduran.pim</groupId>
             <artifactId>exception-handler</artifactId>
         </dependency>
+        <dependency>
+            <groupId>tr.com.yavuzduran.pim</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

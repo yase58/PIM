@@ -1,10 +1,10 @@
 package tr.com.yavuzduran.pim.todoapp.util;
 
 import org.springframework.security.core.context.SecurityContextHolder;
+import tr.com.yavuzduran.pim.exceptionhandler.exception.todo.TodoParseException;
 import tr.com.yavuzduran.pim.todoapp.dto.TodoDto;
 import tr.com.yavuzduran.pim.todoapp.model.Todo;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +14,7 @@ public class TodoModelConverter {
     private TodoModelConverter() {
     }
 
-    public static Todo convert(TodoDto toDoDto) throws ParseException {
+    public static Todo convert(TodoDto toDoDto) throws TodoParseException {
         Date date = TimeFormatter.parse(toDoDto.getDueDate());
         return Todo.builder()
                 .dueDate(date)

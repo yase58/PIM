@@ -42,11 +42,11 @@ public class BlogModelConverter {
                 .build();
     }
 
-    public static List<BlogSoftwareSimpleDto> convert(List<BlogSoftware> blogSoftwareList) {
-        List<BlogSoftwareSimpleDto> blogSoftwareSimpleDtoList = new ArrayList<>();
+    public static List<BlogSoftwareDto> convert(List<BlogSoftware> blogSoftwareList) {
+        List<BlogSoftwareDto> blogSoftwareSimpleDtoList = new ArrayList<>();
         if (blogSoftwareList != null && !blogSoftwareList.isEmpty()) {
             for (BlogSoftware blogSoftware : blogSoftwareList) {
-                blogSoftwareSimpleDtoList.add(convertSimple(blogSoftware));
+                blogSoftwareSimpleDtoList.add(convert(blogSoftware));
             }
         }
         return blogSoftwareSimpleDtoList;

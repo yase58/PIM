@@ -13,7 +13,7 @@ public class BlogModelConverter {
     }
 
     public static BlogPersonalSimpleDto convertSimple(BlogPersonal blogPersonal) {
-        return BlogPersonalSimpleDto.builder()
+        return BlogPersonalSimpleDto.builderSimple()
                 .title(blogPersonal.getTitle())
                 .summary(blogPersonal.getSummary())
                 .build();
@@ -42,11 +42,11 @@ public class BlogModelConverter {
                 .build();
     }
 
-    public static List<BlogPersonalSimpleDto> convert(List<BlogPersonal> blogPersonalList) {
-        List<BlogPersonalSimpleDto> blogPersonalSimpleDtoList = new ArrayList<>();
+    public static List<BlogPersonalDto> convert(List<BlogPersonal> blogPersonalList) {
+        List<BlogPersonalDto> blogPersonalSimpleDtoList = new ArrayList<>();
         if (blogPersonalList != null && !blogPersonalList.isEmpty()) {
             for (BlogPersonal blogPersonal : blogPersonalList) {
-                blogPersonalSimpleDtoList.add(convertSimple(blogPersonal));
+                blogPersonalSimpleDtoList.add(convert(blogPersonal));
             }
         }
         return blogPersonalSimpleDtoList;

@@ -3,7 +3,6 @@ package tr.com.yavuzduran.pim.contact.util;
 import org.springframework.security.core.context.SecurityContextHolder;
 import tr.com.yavuzduran.pim.contact.dto.ContactDto;
 import tr.com.yavuzduran.pim.contact.model.Contact;
-import tr.com.yavuzduran.pim.exceptionhandler.exception.ContactNullException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +10,11 @@ import java.util.UUID;
 
 public class ContactModelConverter {
 
-    public static Contact convert(ContactDto contactDto) throws ContactNullException {
-        if(contactDto == null){
-            throw new ContactNullException("Contact is Empty");
-        }
+    private ContactModelConverter() {
+
+    }
+
+    public static Contact convert(ContactDto contactDto) {
         return Contact.builder()
                 .company(contactDto.getCompany())
                 .name(contactDto.getName())
@@ -26,10 +26,7 @@ public class ContactModelConverter {
                 .build();
     }
 
-    public static ContactDto convert(Contact contact) throws ContactNullException {
-        if(contact == null){
-            throw new ContactNullException("Contact Not Found");
-        }
+    public static ContactDto convert(Contact contact) {
         return ContactDto.builder()
                 .company(contact.getCompany())
                 .name(contact.getName())
@@ -39,19 +36,12 @@ public class ContactModelConverter {
                 .build();
     }
 
-    public static List<ContactDto> convert(List<Contact> contactList) throws ContactNullException {
-        if(contactList == null || contactList.isEmpty()){
-            throw new ContactNullException("Contact Not Found!");
-        }
+    public static List<ContactDto> convert(List<Contact> contactList) {
         List<ContactDto> contactDtoList = new ArrayList<>();
         for (Contact contact : contactList) {
             contactDtoList.add(convert(contact));
         }
         return contactDtoList;
-    }
-
-    private ContactModelConverter(){
-
     }
 
 }

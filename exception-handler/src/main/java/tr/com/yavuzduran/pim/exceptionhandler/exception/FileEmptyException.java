@@ -1,6 +1,6 @@
 package tr.com.yavuzduran.pim.exceptionhandler.exception;
 
-public class FileEmptyException extends Exception {
+public class FileEmptyException extends PIMException {
 
     private final String fileName;
 

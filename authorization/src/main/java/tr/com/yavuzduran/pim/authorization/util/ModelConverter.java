@@ -25,7 +25,6 @@ public class ModelConverter {
                 .build();
     }
 
-
     public static UserDto convert(User user) {
         return UserDto.builder()
                 .name(user.getName())
@@ -48,7 +47,6 @@ public class ModelConverter {
                 .build();
     }
 
-
     public static List<UserDto> convertAllUser(List<User> userList) {
         if (userList == null || userList.isEmpty()) {
             return new ArrayList<>();
@@ -60,11 +58,11 @@ public class ModelConverter {
         return userDtoList;
     }
 
-    public static Set<RoleDto> convertAllRole(Set<Role> roleList) {
+    public static List<RoleDto> convertAllRole(List<Role> roleList) {
         if (roleList == null || roleList.isEmpty()) {
-            return new HashSet<>();
+            return new ArrayList<>();
         }
-        Set<RoleDto> roleDtoList = new HashSet<>();
+        List<RoleDto> roleDtoList = new ArrayList<>();
         for (Role role : roleList) {
             roleDtoList.add(convert(role));
         }
@@ -72,11 +70,11 @@ public class ModelConverter {
     }
 
 
-    public static Set<Role> convertAllRoleEntity(Set<RoleDto> roleDtoSet) {
+    public static List<Role> convertAllRoleEntity(List<RoleDto> roleDtoSet) {
         if (roleDtoSet == null || roleDtoSet.isEmpty()) {
-            return new HashSet<>();
+            return new ArrayList<>();
         }
-        Set<Role> roleDtoList = new HashSet<>();
+        List<Role> roleDtoList = new ArrayList<>();
         for (RoleDto role : roleDtoSet) {
             roleDtoList.add(convert(role));
         }

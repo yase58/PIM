@@ -11,11 +11,12 @@
     </parent>
 
     <modules>
-        <module>../security</module>
         <module>../exception-handler</module>
+        <module>../security</module>
+        <module>../common</module>
         <module>../authorization</module>
-        <module>../contact</module>
         <module>../photo</module>
+        <module>../contact</module>
         <module>../blog-software</module>
         <module>../blog-personal</module>
         <module>../event-scheduler</module>
@@ -36,6 +37,7 @@
 
         <exception-handler.version>0.0.1</exception-handler.version>
         <security.version>0.0.1</security.version>
+        <common.version>0.0.1</common.version>
         <authorization.version>0.0.1</authorization.version>
         <photo.version>0.0.1</photo.version>
         <contact.version>0.0.1</contact.version>
@@ -58,6 +60,11 @@
                 <groupId>tr.com.yavuzduran.pim</groupId>
                 <artifactId>security</artifactId>
                 <version>${security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tr.com.yavuzduran.pim</groupId>
+                <artifactId>common</artifactId>
+                <version>${common.version}</version>
             </dependency>
             <dependency>
                 <groupId>tr.com.yavuzduran.pim</groupId>
@@ -94,6 +101,7 @@
                 <artifactId>todo-app</artifactId>
                 <version>${todo-app.version}</version>
             </dependency>
+
 
             <!--  Spring Dependency -->
 
