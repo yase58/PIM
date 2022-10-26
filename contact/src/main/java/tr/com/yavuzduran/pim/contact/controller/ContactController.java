@@ -36,7 +36,7 @@ public class ContactController extends ICrudController<ContactDto, FullNameDto> 
     }
 
     @Override
-    @PutMapping("/{name}/{surname}")
+    @DeleteMapping("/{name}/{surname}")
     public ResponseEntity<Response> remove(FullNameDto fullNameDto) throws ContactNameNullException, ContactNotFoundException {
         contactService.remove(fullNameDto);
         return ResponseBuilder.createSuccess();
